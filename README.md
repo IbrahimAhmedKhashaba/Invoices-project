@@ -34,14 +34,6 @@ A lightweight web application that simplifies the creation, management, and trac
 
 ---
 
-## 📸 Screenshots
-
-> *(Add images of invoice list view and create/edit form)*  
-> Example:  
-> `![Invoices Page](screenshots/invoices.png)`
-
----
-
 ## 📦 Installation
 
 ```bash
