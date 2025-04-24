@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -64,3 +65,48 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+=======
+
+
+# 📄 Invoice Management System – Laravel 11
+
+A lightweight web application that simplifies the creation, management, and tracking of invoices for small and medium businesses. Designed with a clean UI and secure admin control, it supports multiple roles and notifications.
+
+---
+
+## 🚀 Features
+
+- Invoice Create, Edit, Delete
+- User/Admin Authentication
+- Role-Based Access Control
+- Invoice Search & Browsing
+- Notification System
+- Responsive UI with Blade
+- Clean and maintainable codebase
+
+---
+
+## 🛠️ Built With
+
+- **Laravel 11**
+- **PHP 8+**
+- **MySQL**
+- **Blade Templates**
+- **Bootstrap**
+- **Ajax**
+- **Git & GitHub**
+
+---
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/IbrahimAhmedKhashaba/Invoices-project.git
+cd Invoices-project
+composer install
+cp .env.example .env
+php artisan key:generate
+# Add your DB config in .env
+php artisan migrate
+php artisan serve
+>>>>>>> 9a05a88c67309c45063f695edef2714bf2e7fbd9
