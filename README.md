@@ -1,9 +1,5 @@
 
----
 
-## 📄 `README.md` لمشروع: **Invoice Management System (Laravel 11)**
-
-```markdown
 # 📄 Invoice Management System – Laravel 11
 
 A lightweight web application that simplifies the creation, management, and tracking of invoices for small and medium businesses. Designed with a clean UI and secure admin control, it supports multiple roles and notifications.
