@@ -1,5 +1,8 @@
 <?php
 
+use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpClient\HttpClient;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomersReportController;
 use App\Http\Controllers\HomeController;
@@ -11,6 +14,7 @@ use App\Http\Controllers\InvoicesReportController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ScrapeController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\UserController;
 use App\Models\InvoicesDetails;
@@ -61,5 +65,37 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-// Route::get('/{page}', [AdminController::class, 'index']);
+Route::get('/scrape', function () {
+    $httpClient = HttpClient::create();
+    $allSrcs = [];
+    $page = 1;
+
+    while (true) {
+        $url = "https://sivec.ae/gallery/sivec-fences?page={$page}";
+        $response = $httpClient->request('GET', $url);
+        $html = $response->getContent();
+
+        $crawler = new Crawler($html);
+
+        $images = $crawler->filter('.img-box img');
+
+        if ($images->count() === 0) {
+            break;
+        }
+
+        $images->each(function (Crawler $node) use (&$allSrcs) {
+            $src = $node->attr('src');
+            if ($src) {
+                $allSrcs[] = 'https://sivec.ae' . $src;
+            }
+        });
+
+        $page++;
+    }
+
+    // حفظ الصور في ملف نصي
+    Storage::disk('local')->put('image_links.txt', implode("\n", $allSrcs));
+
+    return "تم حفظ " . count($allSrcs) . " رابط صورة في: storage/app/image_links.txt";
+});
 

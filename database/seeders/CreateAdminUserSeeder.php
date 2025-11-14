@@ -17,12 +17,15 @@ class CreateAdminUserSeeder extends Seeder
     public function run(): void
     {
         //
-        $user = User::create([
-            'name' => 'Ibrahim Khashaba',
-            'email' => 'hematrezeguet1@gmail.com',
-            'password' => Hash::make('12345678'),
-            'roles_name' => ['owner'],
-            'status' => 'مفعل',
+        $user = User::factory()->create([
+            'name' => 'Ibrahim2',
+            'email' => 'ibrahim2@admin.com',
+            'password' => Hash::make('789789789')
+        ]);
+        $user = User::factory()->create([
+            'name' => 'Ibrahim',
+            'email' => 'ibrahim@admin.com',
+            'password' => Hash::make('789789789')
         ]);
 
         $role = Role::create(['name' => 'owner']);

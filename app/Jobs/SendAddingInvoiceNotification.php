@@ -32,5 +32,5 @@ class SendAddingInvoiceNotification implements ShouldQueue
     public function handle(): void
     {
         Notification::send($this->users, new AddNewInvoice($this->invoice));
-        }
+    }
 }
