@@ -65,37 +65,3 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::get('/scrape', function () {
-    $httpClient = HttpClient::create();
-    $allSrcs = [];
-    $page = 1;
-
-    while (true) {
-        $url = "https://sivec.ae/gallery/sivec-fences?page={$page}";
-        $response = $httpClient->request('GET', $url);
-        $html = $response->getContent();
-
-        $crawler = new Crawler($html);
-
-        $images = $crawler->filter('.img-box img');
-
-        if ($images->count() === 0) {
-            break;
-        }
-
-        $images->each(function (Crawler $node) use (&$allSrcs) {
-            $src = $node->attr('src');
-            if ($src) {
-                $allSrcs[] = 'https://sivec.ae' . $src;
-            }
-        });
-
-        $page++;
-    }
-
-    // حفظ الصور في ملف نصي
-    Storage::disk('local')->put('image_links.txt', implode("\n", $allSrcs));
-
-    return "تم حفظ " . count($allSrcs) . " رابط صورة في: storage/app/image_links.txt";
-});
-
